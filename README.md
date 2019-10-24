@@ -1,4 +1,4 @@
-# Used libraries
+# Used libraries
 
 * Redux: State mechanism
 * Redux-thunk: Redux middleware for async actions
