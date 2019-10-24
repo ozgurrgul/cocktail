@@ -1,0 +1,3 @@
+export const SEARCH_SET_TEXT = "SEARCH_SET_TEXT";
+export const SEARCH_LOADING = "SEARCH_LOADING";
+export const SEARCH_RESULT = "SEARCH_RESULT";
