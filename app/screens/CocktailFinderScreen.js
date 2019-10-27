@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image, ActivityIndicator, FlatList, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { setText, trySearch, cancelState } from "../actions/cocktail-finder";
 import SearchIcon from '../assets/search-icon.png';
@@ -8,6 +8,10 @@ import CocktailItem from "../components/CocktailItem";
 import debounce from "lodash/debounce";
 
 class CocktailFinderScreen extends React.Component {
+
+  componentWillUnmount() {
+    this.props.cancelState();
+  }
 
   delayedSearch = debounce((text) => {
     this.props.trySearch(text);
@@ -35,6 +39,7 @@ class CocktailFinderScreen extends React.Component {
       </TouchableOpacity>
     )
   }
+
   render() {
     const {loading, text, cocktails} = this.props;
     return (
@@ -80,7 +85,8 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 5,
     paddingBottom: 5,
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: Platform.OS === "ios" ? 40 : 5
   },
   leftArrow: {
     width: 20,
@@ -95,7 +101,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 10
+    borderRadius: 10,
+    height: 40
   },
   searchIcon: {
     width: 20,
